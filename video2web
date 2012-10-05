@@ -26,6 +26,7 @@ AUTOPASTE=
 NOTIFY=1
 
 # No more configuration beyond this point
+set -e
 
 
 if pgrep recordmydesktop > /dev/null; then

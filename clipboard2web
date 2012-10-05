@@ -23,6 +23,7 @@ AUTOPASTE=
 NOTIFY=1
 
 # No more configuration beyond this point
+set -e
 
 
 # Sleep to work around some crazy race condition in i3
