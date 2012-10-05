@@ -44,7 +44,8 @@ echo $FILE
 #recordmydesktop --windowid "$(xwininfo | grep 'Window id' | awk '{print $4}')" --no-sound -o $FILE
 
 # Variant 2: click/drag to select a region to record
-COORDS=$( cd $HOME/src/coords/ && . bin/activate && python line.py )
+ROOT=$(cd $(dirname $0); pwd)
+COORDS=$( python $ROOT/coords.py )
 set $COORDS
 recordmydesktop -x $1 -y $2 --width $3 --height $4 --no-sound -o $FILE
 
