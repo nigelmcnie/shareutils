@@ -2,12 +2,12 @@ Shareutils
 ==========
 Various utilities for sharing things you see on your screen with others.
 
-* *clipboard2web*: Sends the text you have selected with your mouse to a paste
+* **clipboard2web**: Sends the text you have selected with your mouse to a paste
 site, and puts the URL to the paste in your "middle-click" clipboard.
-* *screenshot2web*: Lets you select a region of your screen with the mouse, then
+* **screenshot2web**: Lets you select a region of your screen with the mouse, then
 sends a screenshot of that area to a paste site, giving you back the URL in
 your clipboard.
-* *video2web*: Lets you select a region of your screen with the mouse, then
+* **video2web**: Lets you select a region of your screen with the mouse, then
 records a screen capture of it. You guessed it - it also uploads to a paste
 site and give you back the URL in your clipboard.
 
@@ -35,8 +35,8 @@ Using the scripts
 The best way is to have them all bound to keys for easy invocation, but
 initially, it's best to run them directly just to check that they work.
 
-clipboard2web
-~~~~~~~~~~~~~
+**clipboard2web**
+
 Select some text anywhere on your screen (terminal, browser, whatever). Then
 run this script. If it has worked, you'll shortly see the text you selected
 open in a browser, and if you middle-click, you'll find that the URL to view
@@ -47,8 +47,8 @@ see (stack trace, for example), run this script (by pressing a key, more on
 that later), then middle-clicking in IRC for them. We don't auto-paste the link
 by default, as this gives a safety buffer, but you can rig that up if you want.
 
-screenshot2web
-~~~~~~~~~~~~~~
+**screenshot2web**
+
 Run the script. Your cursor should change to a crosshair. Drag to select an
 area on the screen. If the script works, you'll shortly see a screenshot open
 in a browser, and if you middle-click, you'll find that the URL to view the
@@ -58,8 +58,8 @@ Typical usage is as for clipboard2web. Note that as it's uploading an image,
 there might be a short delay between you finishing selecting, and the image
 being pasted.
 
-video2web
-~~~~~~~~~
+**video2web**
+
 Note that you need to run this script once to start recording, *and again to
 stop and trigger the upload*. If you record too much, it's likely the upload
 will take quite some time, and hog your bandwidth too!
@@ -74,8 +74,8 @@ put into your "middle click" clipboard.
 Again, note that you need to run the script once to select the area and start
 recording, and then again to stop the recording and do the transcode/upload.
 
-Binding the scripts to keys
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Binding the scripts to keys**
+
 Once you know they all work, binding them to keys is the best way to get the
 most advantage from them.
 
