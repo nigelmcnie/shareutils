@@ -1,0 +1,38 @@
+#!/bin/sh
+# Clipboard auto paster
+#
+# Pastes your clipboard to a webserver and puts the URL in the clipboard for
+# you. Can also open the URL in a browser and automatically middle-click paste
+# the URL as soon as it's available if you want.
+#
+# Requires imagemagick, curl and xclip.
+#
+# Configure the below as appropriate for you.
+
+# Paste site. Needs to return a redirect URI to view the text when we post to it
+PASTESITE=paste.dollyfish.net.nz
+
+# Which web browser to open the paste in. Leave blank/comment out to do nothing
+BROWSER=google-chrome
+
+# Whether to automatically simulate a middle-click paste (needs xautomation)
+AUTOPASTE=
+
+# Whether to pop up a notification saying the URL has been retrieved (needs
+# libnotify-bin)
+NOTIFY=1
+
+# No more configuration beyond this point
+
+
+# Sleep to work around some crazy race condition in i3
+sleep 0.2
+FILE=$(mktemp)
+rm $FILE
+
+text=$(xclip -o)
+url=$(curl -s -w '%{redirect_url}\n' --data-urlencode "text=$text" $PASTESITE)
+echo $url | xclip
+[ -n "$BROWSER" ] && $BROWSER $url
+[ $AUTOPASTE ] && xte 'mouseclick 2'
+[ $NOTIFY ] && notify-send -c presence -i /usr/share/icons/hicolor/32x32/apps/checkbox.png "Paste URL" "$url"
