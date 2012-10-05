@@ -37,9 +37,11 @@ because we need to send a kill signal to recordmydesktop to make it stop.
 Then, for maximum effect, bind the scripts to keys in your WM. For i3, I did
 this in my config file:
 
+```
 bindsym F6 exec ~/src/shareutils/clipboard2web
 bindsym F7 exec ~/src/shareutils/screenshot2web
 bindsym F8 exec ~/src/shareutils/video2web
+```
 
 If you have them bound to keys and they're not working, the file
 $HOME/.xsession-errors is often where they'll be logging.
