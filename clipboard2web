@@ -27,8 +27,6 @@ NOTIFY=1
 
 # Sleep to work around some crazy race condition in i3
 sleep 0.2
-FILE=$(mktemp)
-rm $FILE
 
 text=$(xclip -o)
 url=$(curl -s -w '%{redirect_url}\n' --data-urlencode "text=$text" $PASTESITE)
