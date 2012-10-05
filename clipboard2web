@@ -5,7 +5,7 @@
 # you. Can also open the URL in a browser and automatically middle-click paste
 # the URL as soon as it's available if you want.
 #
-# Requires imagemagick, curl and xclip.
+# Requires curl and xclip.
 #
 # Configure the below as appropriate for you.
 
