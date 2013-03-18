@@ -32,7 +32,7 @@ sleep 0.2
 FILE=$(mktemp)
 rm $FILE
 
-import $FILE.png
+import +repage $FILE.png
 url=$(curl -s -w '%{redirect_url}\n' -F "file=@$FILE.png;type=image/png" $PASTESITE)
 echo $url | xclip
 [ -n "$BROWSER" ] && $BROWSER $url
