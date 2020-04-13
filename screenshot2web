@@ -27,14 +27,22 @@ NOTIFY=1
 set -e
 
 
-# Sleep to work around some crazy race condition in i3
-sleep 0.2
-FILE=$(mktemp)
-rm $FILE
+SS_DIR=/tmp
+SS_FILE=screenshot.png
 
-import +repage $FILE.png
-url=$(curl -s -w '%{redirect_url}\n' -F "file=@$FILE.png;type=image/png" $PASTESITE)
-echo $url | xclip
-[ -n "$BROWSER" ] && $BROWSER $url
-[ $AUTOPASTE ] && xte 'mouseclick 2'
-[ $NOTIFY ] && notify-send -c presence -i /usr/share/icons/hicolor/32x32/apps/checkbox.png "Image URL" "$url"
+rm -f $SS_DIR/$SS_FILE
+flameshot gui -p $SS_DIR
+
+while events=$(inotifywait -e close_write -t 600 $SS_DIR); do
+    filename=$(echo "$events" | cut -f 3 -d ' ')
+    if [ "$filename" = $SS_FILE ]; then
+        url=$(curl -s -w '%{redirect_url}\n' -F "file=@$SS_DIR/$SS_FILE;type=image/png" $PASTESITE)
+        url=https${url#*http}
+        echo $url | xclip
+        [ -n "$BROWSER" ] && $BROWSER $url
+        [ $AUTOPASTE ] && xte 'mouseclick 2'
+        [ $NOTIFY ] && notify-send -c presence -i /usr/share/icons/hicolor/32x32/apps/checkbox.png "Image URL" "$url"
+        rm $SS_DIR/$SS_FILE
+        exit 0
+    fi
+done
