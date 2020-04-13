@@ -48,10 +48,12 @@ ROOT=$(cd $(dirname $0); pwd)
 COORDS=$( python $ROOT/coords.py )
 set $COORDS
 recordmydesktop -x $1 -y $2 --width $3 --height $4 --no-sound -o $FILE
+ffmpeg -i $FILE.ogv -vcodec libx264 -acodec none $FILE.mp4
 
-url=$(curl -w '%{redirect_url}\n' -F "file=@$FILE.ogv;type=application/ogg; charset=binary" $PASTESITE)
+url=$(curl -w '%{redirect_url}\n' -F "file=@$FILE.mp4;type=video/mp4; charset=binary" $PASTESITE)
 echo $url | xclip
 [ -n "$BROWSER" ] && $BROWSER $url
 [ $AUTOPASTE ] && xte 'mouseclick 2'
 [ $NOTIFY ] && notify-send -c presence -i /usr/share/icons/hicolor/32x32/apps/checkbox.png "Video URL" "$url"
 rm $FILE.ogv
+rm $FILE.mp4
