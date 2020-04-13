@@ -11,7 +11,7 @@
 # Configure the below as appropriate for you.
 
 # Paste site. Needs to return a redirect URI to view the file when we post to it
-PASTESITE=f.dollyfish.net.nz
+PASTESITE=https://f.dollyfish.net.nz
 
 # Which web browser to open the paste in. Leave blank/comment out to do nothing
 BROWSER=google-chrome
